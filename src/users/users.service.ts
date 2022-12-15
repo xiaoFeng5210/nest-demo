@@ -11,7 +11,7 @@ export class UsersService {
   ) {}
   
   create(user: User) {
-    
+    return this.usersRepository.save(user);
   }
 
   findAll(): Promise<User[]> {

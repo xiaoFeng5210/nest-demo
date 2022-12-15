@@ -1,8 +1,11 @@
-import { Controller, Get, Req, Post, Header, Param, Body } from '@nestjs/common';
+import { Controller, Get, Req, Post, Header, Param, Body, UseInterceptors } from '@nestjs/common';
 import {Request} from 'express';
 import {Cat, CatsService} from './cats.service'
+import {LoggingInterceptor} from './logging.interceptor'
+
 
 @Controller('cats')
+@UseInterceptors(LoggingInterceptor)
 export class CatsController {
   constructor(private catsService: CatsService) {}
   

@@ -6,8 +6,6 @@ import { CatsModule } from './cats/cats.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {DataSource} from 'typeorm'
 import { User } from './users/user.entity';
-import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
 import { UsersModule } from "./users/user.module";
 
 @Dependencies(DataSource)
