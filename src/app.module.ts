@@ -8,23 +8,28 @@ import {DataSource} from 'typeorm'
 import { User } from './users/user.entity';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
+import { UsersModule } from "./users/user.module";
 
 @Dependencies(DataSource)
 @Module({
   imports: [CatsModule, TypeOrmModule.forRoot({ 
     type: 'mysql',
-    host: 'localhost',
-    port: 8081,
-    username: 'root',
-    password: 'root',
+    host: '127.0.0.1',
+    port: 3306,
+    username: 'xiaofeng',
+    password: 'f85859852',
     database: 'test',
     entities: [User],
     synchronize: true,
-  })],
-  controllers: [AppController, UsersController],
-  providers: [AppService, UsersService],
+  }), UsersModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
+  dataSource: DataSource;
+  constructor(dataSource) {
+    this.dataSource = dataSource;
+  }
   configure(consumer) {
     consumer
       .apply(LoggerMiddleware)
