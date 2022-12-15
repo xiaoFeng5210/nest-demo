@@ -17,8 +17,12 @@ export class UsersService {
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
+  
+  find(where: Partial<User>): Promise<User[]> {
+    return this.usersRepository.find({where})
+  }
 
-  findOne(id: string): Promise<User> {
+  findOne(id: number): Promise<User> {
     // @ts-ignore
     return this.usersRepository.findOne(id);
   }

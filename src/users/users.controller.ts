@@ -16,5 +16,12 @@ export class UsersController {
     return await this.usersService.create(user);
   }
   
+  // 根据条件进行查询
+  @Post('find')
+  async find(@Body() user: Partial<User>) {
+    console.log(user)
+    return await this.usersService.find(user);
+  }
+  
   
 }
