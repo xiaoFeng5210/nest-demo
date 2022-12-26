@@ -29,7 +29,10 @@ export class BoilOrdersService {
     return this.boilOrdersRepository.find({
       where: queryParams,
       skip: pagination.page ? pagination.page : 0,
-      take: pagination.size ? pagination.size : 10
+      take: pagination.size ? pagination.size : 10,
+      order: {
+        id: "DESC",
+      },
     });
   }
 }
