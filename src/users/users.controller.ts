@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from "@nestjs/common";
+import { Controller, Get, Post, Body, Param } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./user.entity";
 
@@ -9,6 +9,11 @@ export class UsersController {
   @Get('all')
   async findAll(): Promise<User[]> {
     return await this.usersService.findAll();
+  }
+  
+  @Get(':id')
+  async findOne(@Param() params): Promise<User> {
+    return await this.usersService.findOne(params.id);
   }
   
   @Post('create')
@@ -22,6 +27,4 @@ export class UsersController {
     console.log(user)
     return await this.usersService.find(user);
   }
-  
-  
 }

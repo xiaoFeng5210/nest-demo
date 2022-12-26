@@ -6,7 +6,9 @@ import { CatsModule } from './cats/cats.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {DataSource} from 'typeorm'
 import { User } from './users/user.entity';
+import { BoilOrders } from './boil_orders/boil_orders.entity';
 import { UsersModule } from "./users/user.module";
+import { BoilOrdersModule } from "./boil_orders/boil_orders.module";
 
 @Dependencies(DataSource)
 @Module({
@@ -17,9 +19,9 @@ import { UsersModule } from "./users/user.module";
     username: 'xiaofeng',
     password: 'f85859852',
     database: 'test',
-    entities: [User],
-    synchronize: true,
-  }), UsersModule],
+    entities: [User, BoilOrders],
+    synchronize: false,
+  }), UsersModule, BoilOrdersModule],
   controllers: [AppController],
   providers: [AppService],
 })

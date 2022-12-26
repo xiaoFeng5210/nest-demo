@@ -22,7 +22,7 @@ export class UsersService {
     return this.usersRepository.find({where})
   }
 
-  findOne(id: number): Promise<User> {
+  findOne(id: string): Promise<User> {
     // @ts-ignore
     return this.usersRepository.findOne(id);
   }
