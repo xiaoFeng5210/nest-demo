@@ -18,9 +18,19 @@ export interface GetListParams {
 export class BoilOrdersController {
   constructor(private boilOrdersService: BoilOrdersService) {}
   
-  @Get(':id')
-  async findOne(@Param() params): Promise<BoilOrders> {
-    return this.boilOrdersService.findOne(params.id);
+  // @Get(':id')
+  // async findOne(@Param() params): Promise<BoilOrders> {
+  //   return this.boilOrdersService.findOne(Number(params.id));
+  // }
+  
+  @Post('get_food_category_today')
+  async getFoodToday(@Body() body: {project_name: string}) {
+    return this.boilOrdersService.getFoodToday(body);
+  }
+
+  @Post('get_food_category')
+  async getFoodCategory(@Body() body: {project_name: string}) {
+    return this.boilOrdersService.getFoodCategory(body);
   }
   
   @Post('find')
@@ -29,4 +39,13 @@ export class BoilOrdersController {
     return this.boilOrdersService.findList(query, pagination);
   }
   
+  @Post('list_count')
+  async getListCount(@Body() body: {food_name: string, project_name: string}) {
+    return this.boilOrdersService.getListCount(body);
+  }
+  
+  @Get('get_company')
+  async getCompany() {
+    return this.boilOrdersService.getAllCompany();
+  }
 }

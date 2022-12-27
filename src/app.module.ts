@@ -21,6 +21,7 @@ import { BoilOrdersModule } from "./boil_orders/boil_orders.module";
     database: 'test',
     entities: [User, BoilOrders],
     synchronize: false,
+    logging: true,
   }), UsersModule, BoilOrdersModule],
   controllers: [AppController],
   providers: [AppService],
