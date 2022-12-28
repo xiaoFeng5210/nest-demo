@@ -1,7 +1,5 @@
-import { Controller, Get, Post, Body, Param } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { BoilOrdersService } from "./boil_orders.service";
-import {BoilOrders} from "./boil_orders.entity";
-import {Request} from 'express';
 
 export interface GetListParams {
   query: {
@@ -22,9 +20,14 @@ export class BoilOrdersController {
   // async findOne(@Param() params): Promise<BoilOrders> {
   //   return this.boilOrdersService.findOne(Number(params.id));
   // }
+
+  @Get('get_company')
+  async getCompany() {
+    return this.boilOrdersService.getAllCompany();
+  }
   
   @Post('get_food_category_today')
-  async getFoodToday(@Body() body: {project_name: string}) {
+  async getFoodToday(@Body() body: {project_name: string, order_date: string}) {
     return this.boilOrdersService.getFoodToday(body);
   }
 
@@ -44,8 +47,19 @@ export class BoilOrdersController {
     return this.boilOrdersService.getListCount(body);
   }
   
-  @Get('get_company')
-  async getCompany() {
-    return this.boilOrdersService.getAllCompany();
+  @Post('everyday')
+  async getEveryday(@Body() body: {project_name: string, start_time: string, end_time: string}) {
+    const res1 = await this.boilOrdersService.getFoodGroupByDay(body);
+    console.log(res1)
+    for (let item of res1) {
+      item.foods = await this.boilOrdersService.getDayFoodGroupByFoodName({
+        project_name: body.project_name,
+        order_date: item.day
+      });
+    }
+    // for (let item of res1) {
+    //  
+    // }
+    return res1
   }
 }
