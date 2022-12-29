@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from 'typeorm';
-import {BoilOrders} from "./boil_orders.entity";
-import { DataSource } from "typeorm"
+import { BoilOrders } from "./boil_orders.entity";
 
 
 @Injectable()

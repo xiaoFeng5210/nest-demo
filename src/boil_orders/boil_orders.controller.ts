@@ -43,7 +43,7 @@ export class BoilOrdersController {
   }
   
   @Post('list_count')
-  async getListCount(@Body() body: {food_name: string, project_name: string}) {
+  async getListCount(@Body() body: { food_name: string, project_name: string, status: number }) {
     return this.boilOrdersService.getListCount(body);
   }
   
