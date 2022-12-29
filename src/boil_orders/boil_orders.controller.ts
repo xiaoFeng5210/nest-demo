@@ -57,9 +57,6 @@ export class BoilOrdersController {
         order_date: item.day
       });
     }
-    // for (let item of res1) {
-    //  
-    // }
     return res1
   }
 }
