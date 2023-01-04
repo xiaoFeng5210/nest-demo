@@ -12,4 +12,6 @@ COPY . .
 
 RUN npm run build
 
+ENV RUNNING_ENV=prod
+
 CMD [ "node", "dist/main.js" ]

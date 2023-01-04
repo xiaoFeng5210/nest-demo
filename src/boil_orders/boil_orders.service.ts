@@ -93,5 +93,4 @@ export class BoilOrdersService {
       `select food_name, count(*) as value, order_date as day from boil_orders where project_name = "${where.project_name}" and food_name = "${where.food_name}" group by order_date order by order_date`
     )
   }
-  
 }
